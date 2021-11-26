@@ -25,7 +25,7 @@
 
 #define KYBER_MIN_WEIGHT		1
 #define KYBER_MAX_WEIGHT		1000
-#define KYBER_WEIGHT_LEGACY_DFL	100
+#define KYBER_WEIGHT_LEGACY_DFL		100
 #define KYBER_MAX_CGROUP		100
 #define KYBER_REFILL_TIME		100 * NSEC_PER_MSEC
 #define KYBER_SCALE_FACTOR		16
@@ -819,7 +819,8 @@ static enum hrtimer_restart kyber_refill_fn(struct hrtimer *timer)
 	wake_up_process(kfg->timer_thread);
 
 	hrtimer_start(&kfg->timer, ktime, HRTIMER_MODE_REL);
-	return HRTIMER_NORESTART;
+
+	return HRTIMER_RESTART;
 }
 
 static struct kyber_queue_data *kyber_queue_data_alloc(struct request_queue *q)
